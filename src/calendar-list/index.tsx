@@ -58,6 +58,8 @@ export interface CalendarListProps extends CalendarProps, Omit<FlatListProps<any
   onLayout?: (event: LayoutChangeEvent) => void;
   removeClippedSubviews?: boolean;
   testID?: string;
+  /** Extra data to force rerender */
+  extraData?: any;
 }
 
 type XDateAndBump = XDate & {propBump?: number};
@@ -99,7 +101,8 @@ class CalendarList extends Component<CalendarListProps, State> {
     /** Called once when the scroll position gets within onEndReachedThreshold */
     onEndReached: PropTypes.func,
     /** Enables nested scrolling for Android API level 21+ */
-    nestedScrollEnabled: PropTypes.bool
+    nestedScrollEnabled: PropTypes.bool,
+    extraData: PropTypes.bool
   };
 
   static defaultProps = {
@@ -113,7 +116,8 @@ class CalendarList extends Component<CalendarListProps, State> {
     scrollEnabled: true,
     removeClippedSubviews: constants.isAndroid,
     keyExtractor: (_: any, index: number) => String(index),
-    nestedScrollEnabled: true
+    nestedScrollEnabled: true,
+    extraData: false
   };
 
   style: any;
@@ -357,6 +361,7 @@ class CalendarList extends Component<CalendarListProps, State> {
           onEndReachedThreshold={this.props.onEndReachedThreshold}
           onEndReached={this.props.onEndReached}
           nestedScrollEnabled={this.props.nestedScrollEnabled}
+          extraData={this.props.extraData}
         />
         {this.renderStaticHeader()}
       </View>
