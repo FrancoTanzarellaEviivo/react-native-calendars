@@ -21,7 +21,6 @@
     "clean": "rm package-lock.json && rm -rf ./node_modules && npm i",
     "pod-install": "pod install --project-directory=ios",
     "post-install": "node ./scripts/postinstall.js"
-    // "prepare": "npm run post-install"
   },
   "repository": {
     "type": "git",
